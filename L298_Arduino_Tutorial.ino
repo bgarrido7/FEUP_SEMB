@@ -1,4 +1,4 @@
-/*L293D*/
+
 /*Motor B*/
  int motorPin4  = 9;  /* IN4 */
  int motorPin3  = 10;  /* IN3 */
@@ -7,7 +7,6 @@
  int motorPin2  = 6; /* IN2 */
  int motorPin1  = 5;  /* IN1 */
 
-/*This will run only one time.*/
 void setup(){
 
     /*Set pins as outputs*/
@@ -49,12 +48,9 @@ void setup(){
     analogWrite(motorPin2, 0);
     analogWrite(motorPin3, 0);
     analogWrite(motorPin4, 0);
-  
 }
 
 
 void loop(){
-    
-    
 
 }
