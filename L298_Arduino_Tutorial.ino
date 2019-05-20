@@ -18,7 +18,7 @@ void setup(){
     /*Motor da esquerda frente*/
     analogWrite(motorPin1, 0);
     analogWrite(motorPin3, 0);
-    analogWrite(motorPin2, 180);
+    analogWrite(motorPin2, 180); /*velocdade vai até 255*/
     analogWrite(motorPin4, 0);
     delay(1000);  
 
