@@ -1,10 +1,10 @@
 /*Motor B*/
-int motorPin4  = 9;  /* IN4 - */
-int motorPin3  = 10;  /* IN3 */
+int motorPin4  = 9;  /* IN4 - direita, frente*/
+int motorPin3  = 10;  /* IN3 - direita, tras*/
 
 /*Motor A*/
-int motorPin2  = 6; /* IN2 */
-int motorPin1  = 5;  /* IN1 */
+int motorPin2  = 6; /* IN2 - esquerda, frente*/
+int motorPin1  = 5;  /* IN1 - esquerda, tras*/
 
 int xVal; //X values from joystick
 int yVal; //Y values from joystick
