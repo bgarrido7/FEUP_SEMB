@@ -7,6 +7,11 @@ int motorPin2  = 6; /* IN2 - esquerda, frente*/
 int motorPin1  = 5;  /* IN1 - esquerda, tras*/
 
 
+//sensor proximidade
+int echoPin = 11;
+int trigPin = 3;
+
+
 /* 3 Tasks:
  *     T1 -> period = , ler input do joysyick/giroscopio
  *     T2 -> period = , mexer rodas do carro conforme input dado
@@ -70,14 +75,11 @@ void T1(){ //ler joystick
 
 //*************** Multi-tasking kernel ******************
 typedef struct {
-  /* period in ticks */
   int period;
-  /* ticks until next activation */
   int offset;
-  /* function pointer */
   void (*func)(void);
-  /* activation counter */
   int exec;
+
 } Sched_Task_t;
 
 Sched_Task_t Tasks[10];
