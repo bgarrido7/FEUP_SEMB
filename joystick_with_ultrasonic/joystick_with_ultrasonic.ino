@@ -50,17 +50,17 @@ void loop() {
     // Calculating the distance
     distance= duration*0.034/2;
 
-/*
+
   //debug do joystick
     Serial.print("x = ");
-    Serial.println(xVal);
-    Serial.print("y = ");
+    Serial.print(xVal);
+    Serial.print("\ty = ");
     Serial.println(yVal);
-*/
+
    //debug do sensor ultrasonico
    Serial.println(distance);
 
-    if(distance<10 && xVal==0){
+    if((distance<10 ||distance >40) && xVal<12){
       analogWrite(motorPin1, 0);
       analogWrite(motorPin2, 0);
       analogWrite(motorPin3, 0);
@@ -69,7 +69,7 @@ void loop() {
 
     else{
     //frente
-        if(xVal==0){
+        if(xVal<12){
             analogWrite(motorPin1, 0);
             analogWrite(motorPin3, 0);
             analogWrite(motorPin2, 255);    
@@ -93,7 +93,7 @@ void loop() {
         }
     
     //esquerda
-        else if(yVal==0){
+        else if(yVal<12){
             analogWrite(motorPin4, 0);
             analogWrite(motorPin2, 255);
             analogWrite(motorPin3, 0);

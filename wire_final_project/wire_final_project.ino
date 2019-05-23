@@ -1,3 +1,5 @@
+#define MAXT 10
+
 /*Motor B*/
 int motorPin4  = 9;  /* IN4 - direita, frente*/
 int motorPin3  = 10;  /* IN3 - direita, tras*/
@@ -11,6 +13,10 @@ int motorPin1  = 5;  /* IN1 - esquerda, tras*/
 int echoPin = 11;
 int trigPin = 3;
 
+int xVal; //X values from joystick
+int yVal; //Y values from joystick
+
+int distance=0, duration=0; //para sensor proximidade
 
 /* 3 Tasks:
  *     T1 -> period = , ler input do joysyick/giroscopio
@@ -71,6 +77,19 @@ void T1(){ //ler joystick
 
  void T3(){//ler sensor proximidade
 
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+    
+    // Sets the trigPin on HIGH state for 10 micro seconds
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+    
+    // Reads the echoPin, returns the sound wave travel time in microseconds
+    duration = pulseIn(echoPin, HIGH);
+    
+    // Calculating the distance
+    distance= duration*0.034/2;
  }
 
 //*************** Multi-tasking kernel ******************
@@ -82,14 +101,12 @@ typedef struct {
 
 } Sched_Task_t;
 
-Sched_Task_t Tasks[10];
+Sched_Task_t Tasks[MAXT];
 
 // kernel initialization routine
 int Sched_Init(void){
 
   // Initialise data structures
-  int xVal; //X values from joystick
-  int yVal; //Y values from joystick
 
   byte x;
   for(x=0; x<MAXT; x++)
@@ -166,7 +183,10 @@ void Sched_Dispatch(void){
 
 void setup() {
 
-    Serial.begin(1200); //serial at 9600 baud
+ //   Serial.begin(1200); //serial at 9600 baud
+  
+    pinMode(trigPin, OUTPUT); 
+    pinMode(echoPin, INPUT);
 
     pinMode(A0, INPUT); 
     pinMode(A2, INPUT);
@@ -213,12 +233,15 @@ void loop() {
 
   Sched_Dispatch();  
 
+/*
   //debug do joystick
     Serial.print("x = ");
     Serial.println(xVal);
     Serial.print("y = ");
     Serial.println(yVal);
-
+*/
+//debug do sensor ultrasonico
+ //  Serial.println(distance);
      
     
 } 
