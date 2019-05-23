@@ -16,16 +16,16 @@ int trigPin = 3;
 int xVal; //X values from joystick
 int yVal; //Y values from joystick
 
-int distance=0, duration=0; //para sensor proximidade
+byte tooClose=0;//para sensor proximidade
 
 /* 3 Tasks:
- *     T1 -> period = , ler input do joysyick/giroscopio
- *     T2 -> period = , mexer rodas do carro conforme input dado
- *     T3 -> period = , parar carro se sensor proximidade detetar obstáculo
+ *     T1 -> period = 80, ler dados enviados do ESP
+ *     T2 -> period = 100, mexer rodas do carro conforme input dado
+ *     T3 -> period = 65, parar carro se sensor proximidade detetar obstáculo
  */
 
 //*************** tasks code ******************
-void T1(){ //ler joystick
+void T1(){ //ler recetor de dados
 
   xVal = analogRead(A0); //sets the X value
   yVal = analogRead(A2); //sets the Y value
@@ -75,7 +75,10 @@ void T1(){ //ler joystick
     }
  }
 
- void T3(){//ler sensor proximidade
+ int T3(){//ler sensor proximidade
+
+/***********ver melhor maneira de fazer isto sem usar delays************/
+    int distance=0, duration=0; 
 
     digitalWrite(trigPin, LOW);
     delayMicroseconds(2);
@@ -90,6 +93,13 @@ void T1(){ //ler joystick
     
     // Calculating the distance
     distance= duration*0.034/2;
+/***********************************************************************/
+
+    if(distance<10 ||distance >40)
+       tooClose=1;
+
+    else 
+      tooClose=0;
  }
 
 //*************** Multi-tasking kernel ******************
@@ -183,8 +193,6 @@ void Sched_Dispatch(void){
 
 void setup() {
 
- //   Serial.begin(1200); //serial at 9600 baud
-  
     pinMode(trigPin, OUTPUT); 
     pinMode(echoPin, INPUT);
 
@@ -202,7 +210,7 @@ void setup() {
   // add all periodic tasks  (code, offset, period) in ticks
   Sched_AddT(T1, 1, 80);
   Sched_AddT(T2, 1, 100);
-  //Sched_AddT(T3, 1, 65);
+  Sched_AddT(T3, 1, 65);
 
 
   //disable all interrupts
