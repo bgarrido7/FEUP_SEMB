@@ -9,8 +9,6 @@ int motorPin1  = 5;  /* IN1 - esquerda, tras*/
 int xVal; //X values from joystick
 int yVal; //Y values from joystick
 
-int erro;
-
 void setup() {
 
     Serial.begin(1200); //serial at 9600 baud
