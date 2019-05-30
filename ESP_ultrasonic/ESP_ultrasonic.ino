@@ -1,8 +1,9 @@
 // defines pins numbers
 
-const int trigPin = D5;  
-const int echoPin = D6;  
-const int led = D7;
+int led = D3;
+int trigPin = D6;
+int echoPin = D7;
+
 
 // defines variables
 long duration;
