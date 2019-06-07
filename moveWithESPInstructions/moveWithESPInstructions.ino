@@ -3,40 +3,76 @@ int motorPin4  = 9;  /* IN4 - direita, frente*/
 int motorPin3  = 10;  /* IN3 - direita, tras*/
 
 /*Motor A*/
-int motorPin2  = 6; /* IN2 - esquerda, frente*/
-int motorPin1  = 5;  /* IN1 - esquerda, tras*/
+#define motorPin2 6 /* IN2 - esquerda, frente*/
+#define motorPin1 5  /* IN1 - esquerda, tras*/
 
-int enA = 2;
-int enB = 3;
+#define enA 2
+#define enB 3
 
 int velA = 0; //velocidade dos mototres
 int velB = 0; //controlado por PWM
 
 /*sensor proximidade*/
-int echoPin = 11;
-int trigPin = 3;
+#define echoPin 11
+#define trigPin 3
 int distance=0, duration=0;
 
-byte tooClose=0;
+bit tooClose=0;
+
+bit moveForward = 0;
+bit moveBack = 0;
+bit moveRight = 0;
+bit moveLeft = 0;
 
 unsigned long previousMillis = 0; //microsecond at which the pin was last writen
 int trigState = LOW; //state of trigPin
 
 //////////////////////receber dados///////////////////////
-void moveForward(){
-  
+if(){
+    byte moveForward = 1;
+    byte moveBack = 0;
+    byte moveRight = 0;
+    byte moveLeft = 0;
+
+    velA = ;
+    velB = ;
 }
 
-void moveBack(){
-  
+else if(){    
+    byte moveBack = 1;
+    byte moveForward = 0;
+    byte moveRight = 0;
+    byte moveLeft = 0;
+
+    velA = ;
+    velB = ;
 }
 
-void moveRight(){
-  
+else if(){
+    byte moveRight = 1;
+    byte moveForward = 0;
+    byte moveBack = 0;
+    byte moveLeft = 0;
+
+    velA = ;
+    velB = ;
 }
 
-void moveLeft(){
-  
+else if(){
+    byte moveLeft = 1;
+    byte moveForward = 0;
+    byte moveBack = 0;
+    byte moveRight = 0;
+
+    velA = ;
+    velB = ;
+}
+
+else(){
+    byte moveLeft = 0;
+    byte moveForward = 0;
+    byte moveBack = 0;
+    byte moveRight = 0;
 }
 
 ////////////////////////mover carro////////////////////////
@@ -132,30 +168,30 @@ void loop() {
 
    proximity();
 
-    if(tooClose && !moveBack()){
-
+    //pode mover para tras se tiver obstaculo à frente
+    if(tooClose && !moveBack) 
       motorParado();
-    }
-
+    
     else{
+
     //frente
-        if(moveForward())
+        if(moveForward)
           motorFrente();
     
     //tras
-        else if(moveBack())
+        else if(moveBack)
         motorTras();
         
     //direita
-        else if(moveRight())
+        else if(moveRight)
           motorDireita();
     
     //esquerda
-        else if(moveLeft())
+        else if(moveLeft)
           motorEsquerda();
         
     //parado
         else
-          motorParado();
+            motorParado();
    }
 }
