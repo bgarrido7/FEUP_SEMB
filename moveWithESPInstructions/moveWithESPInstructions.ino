@@ -6,6 +6,12 @@ int motorPin3  = 10;  /* IN3 - direita, tras*/
 int motorPin2  = 6; /* IN2 - esquerda, frente*/
 int motorPin1  = 5;  /* IN1 - esquerda, tras*/
 
+int enA = 2;
+int enB = 3;
+
+int velA = 0; //velocidade dos mototres
+int velB = 0; //controlado por PWM
+
 /*sensor proximidade*/
 int echoPin = 11;
 int trigPin = 3;
@@ -35,6 +41,9 @@ void moveLeft(){
 
 ////////////////////////mover carro////////////////////////
 void motorParado(){
+    analogWrite(enA, 0);
+    analogWrite(enB, 0);
+
     digitalWrite(motorPin1, LOW);
     digitalWrite(motorPin2, LOW);
     digitalWrite(motorPin3, LOW);
@@ -43,6 +52,9 @@ void motorParado(){
 
 
 void motorFrente(){
+    analogWrite(enA, velA);
+    analogWrite(enB, velB);
+
     digitalWrite(motorPin1, LOW);
     digitalWrite(motorPin2, HIGH);
     digitalWrite(motorPin3, LOW);
@@ -50,12 +62,18 @@ void motorFrente(){
 }
 
 void motorTras(){
+    analogWrite(enA, velA);
+    analogWrite(enB, velB);
+
     digitalWrite(motorPin1, HIGH);
     digitalWrite(motorPin2, LOW);
     digitalWrite(motorPin3, HIGH);
     digitalWrite(motorPin4, LOW);
 }
 void motorDireita(){
+    analogWrite(enA, velA);
+    analogWrite(enB, velB);
+
     digitalWrite(motorPin1, LOW);
     digitalWrite(motorPin2, LOW);
     digitalWrite(motorPin3, LOW);
@@ -63,6 +81,9 @@ void motorDireita(){
 }
 
 void motorEsquerda(){
+    analogWrite(enA, velA);
+    analogWrite(enB, velB);
+
     digitalWrite(motorPin1, LOW);
     digitalWrite(motorPin2, HIGH);
     digitalWrite(motorPin3, LOW);
@@ -102,6 +123,9 @@ void setup() {
     pinMode(motorPin2, OUTPUT);
     pinMode(motorPin3, OUTPUT);
     pinMode(motorPin4, OUTPUT);
+
+    pinMode(enA, OUTPUT);
+    pinMode(enB, OUTPUT);
 }
 
 void loop() {
@@ -109,6 +133,7 @@ void loop() {
    proximity();
 
     if(tooClose && !moveBack()){
+
       motorParado();
     }
 
