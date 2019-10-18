@@ -7,9 +7,9 @@ final work not saved in this repo
 
 **sensors used:**
 ```
--gyroscope
+*gyroscope
 
--ultrasonic proximity sensor
+*ultrasonic proximity sensor
 
--L298N
+*L298N
 ```
