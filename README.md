@@ -7,7 +7,7 @@ final work not saved in this repo
 
 **sensors used:**
 ```
-*gyroscope
+**gyroscope
 
 *ultrasonic proximity sensor
 
