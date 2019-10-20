@@ -16,3 +16,5 @@ All the course's information can be viewed [here](https://sigarra.up.pt/feup/pt/
 
 > L298N 
 ```
+## Final Project
+The Final Project has a video demo [here](https://www.youtube.com/watch?v=19NFRes8ItE)
