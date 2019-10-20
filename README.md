@@ -1,9 +1,10 @@
 # FEUP_SEMB
 
-playing a bit with ESP32 and Arduino to build a 2WD car conttrolled remotely
+playing a bit with ESP32 and Arduino to build a 2WD car conttrolled remotely for the SEMB course 
 
 final work not saved in this repo
 
+All the course's information can be viewed [here](https://sigarra.up.pt/feup/pt/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=420321)
 
 **sensors used:**
 ```
