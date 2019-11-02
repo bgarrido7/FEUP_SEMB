@@ -1,4 +1,4 @@
-# FEUP_SEMB
+# feup-semb
 
 Playing a bit with ESP32 and Arduino to build a 2WD car conttrolled remotely
 
